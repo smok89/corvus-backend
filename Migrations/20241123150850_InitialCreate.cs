@@ -18,11 +18,10 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    symbol = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    web_slug = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    str_id = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    symbol = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    web_slug = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     market_cap = table.Column<long>(type: "bigint", nullable: false),
                     market_cap_rank = table.Column<int>(type: "integer", nullable: false),
                     price = table.Column<decimal>(type: "numeric", nullable: false),
@@ -30,7 +29,9 @@ namespace corvus_backend.Migrations
                     fully_diluted_valuation = table.Column<long>(type: "bigint", nullable: false),
                     circulating_supply = table.Column<decimal>(type: "numeric", nullable: false),
                     total_supply = table.Column<decimal>(type: "numeric", nullable: false),
-                    max_supply = table.Column<decimal>(type: "numeric", nullable: false)
+                    max_supply = table.Column<decimal>(type: "numeric", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,9 +44,9 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,7 +59,9 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    address = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    address = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,8 +74,10 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    path = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    path = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,8 +90,10 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    url = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    type = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    url = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,7 +106,9 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,9 +121,9 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    username = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    password_hash = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    username = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    password_hash = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -135,7 +144,9 @@ namespace corvus_backend.Migrations
                     market_cap = table.Column<long>(type: "bigint", nullable: false),
                     volume_24h = table.Column<decimal>(type: "numeric", nullable: false),
                     high = table.Column<decimal>(type: "numeric", nullable: false),
-                    low = table.Column<decimal>(type: "numeric", nullable: false)
+                    low = table.Column<decimal>(type: "numeric", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -160,7 +171,9 @@ namespace corvus_backend.Migrations
                     market_cap = table.Column<long>(type: "bigint", nullable: false),
                     volume_24h = table.Column<decimal>(type: "numeric", nullable: false),
                     high = table.Column<decimal>(type: "numeric", nullable: false),
-                    low = table.Column<decimal>(type: "numeric", nullable: false)
+                    low = table.Column<decimal>(type: "numeric", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -185,7 +198,9 @@ namespace corvus_backend.Migrations
                     market_cap = table.Column<long>(type: "bigint", nullable: false),
                     volume_24h = table.Column<decimal>(type: "numeric", nullable: false),
                     high = table.Column<decimal>(type: "numeric", nullable: false),
-                    low = table.Column<decimal>(type: "numeric", nullable: false)
+                    low = table.Column<decimal>(type: "numeric", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -208,7 +223,9 @@ namespace corvus_backend.Migrations
                     timestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     price = table.Column<decimal>(type: "numeric", nullable: false),
                     market_cap = table.Column<long>(type: "bigint", nullable: false),
-                    volume_24h = table.Column<decimal>(type: "numeric", nullable: false)
+                    volume_24h = table.Column<decimal>(type: "numeric", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -227,10 +244,10 @@ namespace corvus_backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     coin_id = table.Column<int>(type: "integer", nullable: false),
-                    category_id = table.Column<int>(type: "integer", nullable: false)
+                    category_id = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -256,7 +273,9 @@ namespace corvus_backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     coin_id = table.Column<int>(type: "integer", nullable: false),
-                    contract_address_id = table.Column<int>(type: "integer", nullable: false)
+                    contract_address_id = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -282,7 +301,9 @@ namespace corvus_backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     coin_id = table.Column<int>(type: "integer", nullable: false),
-                    image_id = table.Column<int>(type: "integer", nullable: false)
+                    image_id = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -308,7 +329,9 @@ namespace corvus_backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     coin_id = table.Column<int>(type: "integer", nullable: false),
-                    link_id = table.Column<int>(type: "integer", nullable: false)
+                    link_id = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -334,7 +357,9 @@ namespace corvus_backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     coin_id = table.Column<int>(type: "integer", nullable: false),
-                    platform_id = table.Column<int>(type: "integer", nullable: false)
+                    platform_id = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -361,7 +386,8 @@ namespace corvus_backend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     user_id = table.Column<int>(type: "integer", nullable: false),
                     coin_id = table.Column<int>(type: "integer", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -379,6 +405,12 @@ namespace corvus_backend.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_coin_str_id",
+                table: "coin",
+                column: "str_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_coin_category_relation_category_id",

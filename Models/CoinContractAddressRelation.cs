@@ -4,12 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace corvus_backend.Models
 {
     [Table("coin_contract_address_relation")]
-    public class CoinContractAddressRelation
+    public class CoinContractAddressRelation : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("coin_id")]
         public int CoinId { get; set; }
 
@@ -17,9 +13,9 @@ namespace corvus_backend.Models
         public int ContractAddressId { get; set; }
 
         [ForeignKey("CoinId")]
-        public Coin Coin { get; set; }
+        public Coin? Coin { get; set; }
 
         [ForeignKey("ContractAddressId")]
-        public ContractAddress ContractAddress { get; set; }
+        public ContractAddress? ContractAddress { get; set; }
     }
 }

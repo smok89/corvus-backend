@@ -5,12 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace corvus_backend.Models
 {
     [Table("historical_data_15min")]
-    public class HistoricalData15Min
+    public class HistoricalData15Min : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("coin_id")]
         public int CoinId { get; set; }
 
@@ -33,6 +29,6 @@ namespace corvus_backend.Models
         public decimal Low { get; set; }
 
         [ForeignKey("CoinId")]
-        public Coin Coin { get; set; }
+        public Coin? Coin { get; set; }
     }
 }

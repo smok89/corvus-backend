@@ -4,14 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace corvus_backend.Models
 {
     [Table("contract_address")]
-    public class ContractAddress
+    public class ContractAddress : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("address")]
         [MaxLength(100)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
     }
 }

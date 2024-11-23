@@ -4,18 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace corvus_backend.Models
 {
     [Table("link")]
-    public class Link
+    public class Link : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("type")]
         [MaxLength(100)]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [Column("url")]
         [MaxLength(255)]
-        public string Url { get; set; }
+        public string? Url { get; set; }
     }
 }

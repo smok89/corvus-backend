@@ -12,7 +12,7 @@ using corvus_backend;
 namespace corvus_backend.Migrations
 {
     [DbContext(typeof(CorvusDbContext))]
-    [Migration("20241118012155_InitialCreate")]
+    [Migration("20241123150850_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -59,7 +59,6 @@ namespace corvus_backend.Migrations
                         .HasColumnName("max_supply");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("name");
@@ -68,8 +67,12 @@ namespace corvus_backend.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("price");
 
+                    b.Property<string>("StrId")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("str_id");
+
                     b.Property<string>("Symbol")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)")
                         .HasColumnName("symbol");
@@ -87,12 +90,14 @@ namespace corvus_backend.Migrations
                         .HasColumnName("volume_24h");
 
                     b.Property<string>("WebSlug")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("web_slug");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StrId")
+                        .IsUnique();
 
                     b.ToTable("coin");
                 });
@@ -111,7 +116,6 @@ namespace corvus_backend.Migrations
                         .HasColumnName("created_at");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("name");
@@ -176,6 +180,14 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("contract_address_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CoinId");
@@ -198,9 +210,17 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<int>("ImageId")
                         .HasColumnType("integer")
                         .HasColumnName("image_id");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -224,9 +244,17 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<int>("LinkId")
                         .HasColumnType("integer")
                         .HasColumnName("link_id");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -250,9 +278,17 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<int>("PlatformId")
                         .HasColumnType("integer")
                         .HasColumnName("platform_id");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -273,10 +309,17 @@ namespace corvus_backend.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("address");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -295,6 +338,10 @@ namespace corvus_backend.Migrations
                     b.Property<int>("CoinId")
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<decimal>("High")
                         .HasColumnType("numeric")
@@ -315,6 +362,10 @@ namespace corvus_backend.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("timestamp");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<decimal>("Volume24h")
                         .HasColumnType("numeric")
@@ -340,6 +391,10 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<decimal>("High")
                         .HasColumnType("numeric")
                         .HasColumnName("high");
@@ -359,6 +414,10 @@ namespace corvus_backend.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("timestamp");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<decimal>("Volume24h")
                         .HasColumnType("numeric")
@@ -384,6 +443,10 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<decimal>("High")
                         .HasColumnType("numeric")
                         .HasColumnName("high");
@@ -403,6 +466,10 @@ namespace corvus_backend.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("timestamp");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<decimal>("Volume24h")
                         .HasColumnType("numeric")
@@ -428,6 +495,10 @@ namespace corvus_backend.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("coin_id");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<long>("MarketCap")
                         .HasColumnType("bigint")
                         .HasColumnName("market_cap");
@@ -439,6 +510,10 @@ namespace corvus_backend.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("timestamp");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<decimal>("Volume24h")
                         .HasColumnType("numeric")
@@ -460,17 +535,23 @@ namespace corvus_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<string>("Path")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("path");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("type");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -486,14 +567,20 @@ namespace corvus_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("type");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("url");
@@ -512,11 +599,18 @@ namespace corvus_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("name");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -537,13 +631,11 @@ namespace corvus_backend.Migrations
                         .HasColumnName("created_at");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("email");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("password_hash");
@@ -553,7 +645,6 @@ namespace corvus_backend.Migrations
                         .HasColumnName("updated_at");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("username");
@@ -579,6 +670,10 @@ namespace corvus_backend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer")

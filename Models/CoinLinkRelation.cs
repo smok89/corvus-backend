@@ -4,12 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace corvus_backend.Models
 {
     [Table("coin_link_relation")]
-    public class CoinLinkRelation
+    public class CoinLinkRelation : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("coin_id")]
         public int CoinId { get; set; }
 
@@ -17,9 +13,9 @@ namespace corvus_backend.Models
         public int LinkId { get; set; }
 
         [ForeignKey("CoinId")]
-        public Coin Coin { get; set; }
+        public Coin? Coin { get; set; }
 
         [ForeignKey("LinkId")]
-        public Link Link { get; set; }
+        public Link? Link { get; set; }
     }
 }
